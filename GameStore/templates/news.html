@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% extends "menu.html" %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новости</title>
+</head>
+<body>
+    {% block page_name %}
+        <h1>Новости</h1>
+    {% endblock %}
+
+    {% block menu %}
+        {{ block.super }}
+    {% endblock %}
+
+    {% block content %}
+        <div>
+            {% for news in page_obj %}
+                <div style="border: 1px solid #ccc; padding: 10px; margin-bottom: 10px;">
+                    <h2>{{ news.title }}</h2>
+                    <p>{{ news.content }}</p>
+                    <small>{{ news.date }}</small>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Пагинация -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; Первая</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+                {% endif %}
+
+                <span class="current">
+                    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Следующая</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    {% endblock %}
+</body>
+</html>
+
+
