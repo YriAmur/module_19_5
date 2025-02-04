@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Главное меню</title>
+</head>
+<body>
+    {% block pagename %}
+    <div style="border: 1px solid black;">
+        <h1>{{ title }}</h1>
+    </div>
+    {% endblock %}
+
+    {% block menu %}
+    <div style="border: 1px solid black;">
+        <br>
+        <a href="#"> Главная страница </a>
+        <br>
+        <a href="http://127.0.0.1:8000/games/"> Игры</a>
+        <br>
+        <a href="http://127.0.0.1:8000/cart/"> Корзина</a>
+        <br>
+        <a href="http://127.0.0.1:8000/platform/news/"> Новости</a>
+    </div>
+    {% endblock %}
+
+    <main>
+        <div style="border: 1px solid black;">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+</body>
+</html>
